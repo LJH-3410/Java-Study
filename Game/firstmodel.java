@@ -11,7 +11,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
         private BufferedImage bi = null;
         private ArrayList msList = null;
         private ArrayList enList = null;
-        private static BufferedImage background = null, plane = null, png = null, bullet = null;
+        private static BufferedImage background = null, plane = null, bullet = null;
         private boolean left = false, right = false, up = false, down = false, fire = false;
         private boolean start = false, end = false;
         private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20, life = 3, sum = 0;
@@ -31,9 +31,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          try {
           plane = ImageIO.read(new File("image\\my_plane.png"));
           bullet = ImageIO.read(new File("image\\bullet.png"));
-          //png = ImageIO.read(new File("image\\en_plane.png"));      // 이미지를 출력하는 구문, 오류 발생시 밑에서 처리함
           background = ImageIO.read(new File("image\\back.png"));
-          //ultimate = ImageIO.read(new File("image\\ultimate.png"));
        } catch (IOException e) { }
     }   
         
