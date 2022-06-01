@@ -12,10 +12,10 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
         private ArrayList msList = null;
         private ArrayList enList = null;
         private static BufferedImage background = null, plane = null, png = null, bullet = null;
-        private boolean left = false, right = false, up = false, down = false, fire = false;
+        private boolean left = false, right = false, up = false, down = false, fire = false, shift = false;
         private boolean start = false, end = false;
         private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20, life = 3, sum = 0;
-
+s
 
 
         public firstmodel() {
@@ -31,7 +31,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          try {
           plane = ImageIO.read(new File("image\\my_plane.png"));
           bullet = ImageIO.read(new File("image\\bullet.png"));
-          png = ImageIO.read(new File("image\\en_plane.png")); 
+          png = ImageIO.read(new File("image\\en_plane.png"));     
           background = ImageIO.read(new File("image\\back.png"));
        } catch (IOException e) { }
     }   
@@ -161,20 +161,40 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          ge.drawImage(bi, 0, 0, w, h, this);
         }
         
-        public void keyControl() {
-         if(0 < x) {
-          if(left) x -= 3;
-         }
-         if(w > x + xw) {
-          if(right) x += 3;
-         }
-         if(25 < y) {
-          if(up) y -= 3;
-         }
-         if(h > y + xh) {
-          if(down) y += 3;
-         }
-        }
+        public void keyControl() { 
+          if(0 < x) {
+             if(shift&&left) {
+                x -= 2;
+             }
+             else if(left) {
+                x -= 6;
+             }
+          }
+          if(w > x + 100) {
+             if(right&&shift) {
+                x += 2;
+             }
+             else if(right) {
+                x += 6;
+             }
+          }
+          if(25 < y) {
+             if(up&&shift) { 
+                y -= 2;
+             }
+             else if(up) { 
+                y -= 6;
+             }
+          }
+          if(h > y + 100) {
+             if(down&&shift) {
+                y += 2;
+             }
+             else if(down) { 
+                y += 6;
+             }
+          }
+       }
         
         public void keyPressed(KeyEvent ke) {
          switch(ke.getKeyCode()) {
@@ -197,6 +217,9 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
           start = true;
           end = false;
           break;
+         case KeyEvent.VK_SHIFT :
+         shift = true;
+         break;
          }
         }
         
@@ -217,11 +240,27 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          case KeyEvent.VK_A:
           fire = false;
           break;
+         case KeyEvent.VK_SHIFT :
+         shift = false;
+         break;
          }
         }
         
-        public void keyTyped(KeyEvent ke) {}
-        
+        public void keyTyped(KeyEvent ke) {} // 키 입력 시 좌표 반환
+       
+       public static int getCondX() {
+          return x;
+       }
+       public static int getCondY() {
+          return y;
+       }
+       
+       public static void setX(int x) {
+          firstmodel.x = x;
+       }
+       public static void setY(int y) {
+          firstmodel.y = y;
+       }
         public static void main(String[] args) {
          Thread t = new Thread(new firstmodel());
          t.start();
