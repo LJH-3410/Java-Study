@@ -112,10 +112,10 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          gs.fillRect(0, 0, w, h);
          gs.setColor(Color.black);
          gs.drawImage(background, 0, 0, this);
-         gs.drawString("Enemy °´Ã¼¼ö : " + enList.size(), 15, 60);
-         gs.drawString("Ms °´Ã¼¼ö : " + msList.size(), 15, 80);
-         gs.drawString("°ÔÀÓ½ÃÀÛ : Enter", 15, 100);
-         
+         gs.drawString("Enemy ê°ì²´ìˆ˜ : " + enList.size(), 15, 60);
+         gs.drawString("Ms ê°ì²´ìˆ˜ : " + msList.size(), 15, 80);
+         gs.drawString("ê²Œì„ì‹œì‘ : Enter", 15, 100);
+          
          if(end) {
           gs.drawString("G A M E     O V E R", 250, 300);
          }
