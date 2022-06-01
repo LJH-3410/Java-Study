@@ -11,10 +11,10 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
         private BufferedImage bi = null;
         private ArrayList msList = null;
         private ArrayList enList = null;
-        private static BufferedImage background = null, plane = null, bullet = null;
+        private static BufferedImage background = null, plane = null, png = null, bullet = null;
         private boolean left = false, right = false, up = false, down = false, fire = false;
         private boolean start = false, end = false;
-        private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20;
+        private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20, life = 3, sum = 0;
 
 
 
@@ -31,7 +31,9 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          try {
           plane = ImageIO.read(new File("image\\my_plane.png"));
           bullet = ImageIO.read(new File("image\\bullet.png"));
-          background = ImageIO.read(new File("image\\background.png"));
+          //png = ImageIO.read(new File("image\\en_plane.png"));      // 이미지를 출력하는 구문, 오류 발생시 밑에서 처리함
+          background = ImageIO.read(new File("image\\back.png"));
+          //ultimate = ImageIO.read(new File("image\\ultimate.png"));
        } catch (IOException e) { }
     }   
         
@@ -92,6 +94,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
            if(p.intersects((double)e.x, (double)e.y, (double)e.w, (double)e.h)) {
             msList.remove(i);
             enList.remove(j);
+            sum += 50;
            }
           }
          }
@@ -100,27 +103,33 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
           int[] xpoints = {x, (x + xw), (x + xw), x};
           int[] ypoints = {y, y, (y + xh), (y + xh)};
           p = new Polygon(xpoints, ypoints, 4);
-          if(p.intersects((double)e.x, (double)e.y, (double)e.w, (double)e.h)) {
+          if(p.intersects((double)e.x-30, (double)e.y, (double)e.w, (double)e.h)) {
            enList.remove(i);
-           start = false;
-           end = true;
+         if(life != 0) {
+            --life;
+         }
+         if(life == 0) {
+            start = false; 
+            end = true;
+            sum = 0;
           }
          }
         }
-        
+       }  
         public void draw() {
          Graphics gs = bi.getGraphics();
          gs.setColor(Color.white);
          gs.fillRect(0, 0, w, h);
          gs.setColor(Color.black);
          gs.drawImage(background, 0, 0, this);
-         gs.drawString("Enemy 객체수 : " + enList.size(), 15, 60);
-         gs.drawString("Ms 객체수 : " + msList.size(), 15, 80);
-         gs.drawString("게임시작 : Enter", 15, 100);
+         gs.setColor(Color.white);
+        gs.setFont(new Font("Pixeboy", Font.PLAIN, 40));
+        gs.drawString(sum+"", 15, 110);
+        gs.drawString("LIFE : " + life, 450, 70);
          
          if(end) 
-          gs.drawString("G A M E     O V E R", 250, 300);
-         
+          gs.drawString("G A M E     O V E R", 120, 250);
+          gs.drawString("Single", 15, 70);
           gs.drawImage(plane, x, y, null);
          
          
