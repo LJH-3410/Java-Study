@@ -11,7 +11,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
         private BufferedImage bi = null;
         private ArrayList msList = null;
         private ArrayList enList = null;
-        private static BufferedImage background = null;
+        private static BufferedImage background = null, plane = null;
         private boolean left = false, right = false, up = false, down = false, fire = false;
         private boolean start = false, end = false;
         private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20;
@@ -29,8 +29,9 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setVisible(true); 
          try {
-             background = ImageIO.read(new File("image\\background.png"));
-         } catch (IOException e) { }
+          plane = ImageIO.read(new File("image\\my_plane.png"));
+          background = ImageIO.read(new File("image\\background.png"));
+       } catch (IOException e) { }
     }   
         
         
@@ -112,20 +113,22 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          gs.fillRect(0, 0, w, h);
          gs.setColor(Color.black);
          gs.drawImage(background, 0, 0, this);
-         gs.drawString("Enemy Í∞ùÏ≤¥Ïàò : " + enList.size(), 15, 60);
-         gs.drawString("Ms Í∞ùÏ≤¥Ïàò : " + msList.size(), 15, 80);
-         gs.drawString("Í≤åÏûÑÏãúÏûë : Enter", 15, 100);
-          
-         if(end) {
-          gs.drawString("G A M E     O V E R", 250, 300);
-         }
+         gs.drawString("Enemy ∞¥√ººˆ : " + enList.size(), 15, 60);
+         gs.drawString("Ms ∞¥√ººˆ : " + msList.size(), 15, 80);
+         gs.drawString("∞‘¿”Ω√¿€ : Enter", 15, 100);
          
-         gs.fillRect(x, y, xw, xh);
+         if(end) 
+          gs.drawString("G A M E     O V E R", 250, 300);
+         
+          gs.drawImage(plane, x, y, null);
+         
+         
+         //gs.fillRect(x, y, xw, xh);
           
          for(int i = 0; i < msList.size(); i++) {
           Ms m = (Ms)msList.get(i);
           gs.setColor(Color.blue);
-          gs.drawOval(m.x, m.y, m.w, m.h);
+          gs.drawOval(m.x+43, m.y+10, m.w, m.h);
           if(m.y < 0) msList.remove(i);
           m.moveMs();
          }
