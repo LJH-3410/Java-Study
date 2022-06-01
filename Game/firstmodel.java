@@ -53,7 +53,15 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
              msCnt = 0;
             }
             msCnt += 10;
+            if(sum >= 0 && sum < 500) 
             enCnt += 10;
+            else if(sum >= 500 && sum < 1000)
+               enCnt += 20;
+               else if(sum >= 1000 && sum < 2000)
+                  enCnt += 30;      // 난이도 구현 완료
+         else
+            enCnt += 100;
+            
             keyControl();
             crashChk();
            }
