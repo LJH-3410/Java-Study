@@ -11,7 +11,7 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
         private BufferedImage bi = null;
         private ArrayList msList = null;
         private ArrayList enList = null;
-        private static BufferedImage background = null, plane = null, png = null, bullet = null;
+        private static BufferedImage background = null, plane = null, bullet = null;
         private boolean left = false, right = false, up = false, down = false, fire = false;
         private boolean start = false, end = false;
         private static int w = 600, h = 600, x = 250, y = 500, xw = 20, xh = 20;
@@ -114,9 +114,9 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          gs.fillRect(0, 0, w, h);
          gs.setColor(Color.black);
          gs.drawImage(background, 0, 0, this);
-         gs.drawString("Enemy ê°ì²´ìˆ˜ : " + enList.size(), 15, 60);
-         gs.drawString("Ms ê°ì²´ìˆ˜ : " + msList.size(), 15, 80);
-         gs.drawString("ê²Œì„ì‹œì‘ : Enter", 15, 100);
+         gs.drawString("Enemy °´Ã¼¼ö : " + enList.size(), 15, 60);
+         gs.drawString("Ms °´Ã¼¼ö : " + msList.size(), 15, 80);
+         gs.drawString("°ÔÀÓ½ÃÀÛ : Enter", 15, 100);
          
          if(end) 
           gs.drawString("G A M E     O V E R", 250, 300);
