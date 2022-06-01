@@ -29,12 +29,8 @@ public class firstmodel extends JFrame implements Runnable, KeyListener {
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setVisible(true); 
          try {
-          //plane = ImageIO.read(new File("image\\my_plane.png"));
-          //bullet = ImageIO.read(new File("image\\bullet.png"));
-          //png = ImageIO.read(new File("image\\en_plane.png"));      // 이미지를 출력하는 구문, 오류 발생시 밑에서 처리함
-          background = ImageIO.read(new File("image\\background.png"));
-          //ultimate = ImageIO.read(new File("image\\ultimate.png"));
-       } catch (IOException e) { }
+             background = ImageIO.read(new File("image\\background.png"));
+         } catch (IOException e) { }
     }   
         
         
